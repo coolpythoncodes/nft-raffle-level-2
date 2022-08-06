@@ -36,9 +36,15 @@ const createUsers = async () => {
     const ctc = acc.contract(backend, ctcAlice.getInfo());
     // const [bobRaffleNumber] = await ctc.apis.B.getRandomNumber(numberOfTickets)
     //   console.log(`${who} raffle's number is ${bobRaffleNumber}`)
+    const randomNumber = Math.floor((Math.random() * 10) + 1);
     try {
-      const [bobRaffleNumber] = await ctc.apis.B.getRandomNumber(numberOfTickets)
-      console.log(`${who} raffle's number is ${bobRaffleNumber}`)
+      const value = await ctc.apis.Bob.join(5)
+      const word = value ? "joined" : "did not join"
+      console.log(value)
+      console.log(`${who}  ${word}`)
+
+      // const bobRaffleNumber = await ctc.apis.Bob.getRandomNumber(numberOfTickets)
+      // console.log(`${who} raffle's number is ${bobRaffleNumber}`)
     } catch (error) {
       // console.log(`${who} did not get a raffle number`)
       console.log(error)
@@ -46,15 +52,15 @@ const createUsers = async () => {
   }
 
   await newAccBob("Bob")
-  // await newAccBob("Thomas")
-  // await newAccBob("Nick")
-  // await newAccBob("Jack")
-  // await newAccBob("Candance")
-  // await newAccBob("Jay")
-  // await newAccBob("Bobby")
-  // await newAccBob("John")
-  // await newAccBob("Doe")
-  // await newAccBob("Peter")
+  await newAccBob("Thomas")
+  await newAccBob("Nick")
+  await newAccBob("Jack")
+  await newAccBob("Candance")
+  await newAccBob("Jay")
+  await newAccBob("Bobby")
+  await newAccBob("John")
+  await newAccBob("Doe")
+  await newAccBob("Peter")
 
     console.log(`\n Users has been created: \n`)
 }
@@ -89,7 +95,9 @@ const AliceInteract = {
   ...stdlib.hasConsoleLogger ,
   ...stdlib.hasRandom,
   getUsers:()=>{
-    createUsers()
+    console.log('get users')
+   createUsers()
+    
   },
   startRaffleDraw: async () => {
     console.log("Starting raffle draw - raffle parameters has been sent to the backend");
@@ -103,9 +111,11 @@ const AliceInteract = {
   },
 } 
 
-const BobsInteract = {
-  ...commonInteract,
-}
+// const BobsInteract = {
+//   ...commonInteract,
+
+// }
+
 
 console.log('Starting backends...');
 // await backend.Alice(ctcAlice, AliceInteract)

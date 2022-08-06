@@ -33,8 +33,9 @@ export function _getViews(s, viewlib) {
       },
     views: {
       1: [ctc0, ctc1, ctc2, ctc3],
-      2: [ctc0, ctc1, ctc2, ctc3],
-      5: [ctc0, ctc1, ctc2, ctc2, ctc2]
+      3: [ctc0, ctc1, ctc2, ctc3, ctc2],
+      6: [ctc0, ctc1, ctc2, ctc2, ctc2],
+      7: [ctc0, ctc1, ctc2, ctc3, ctc2]
       }
     };
   
@@ -74,7 +75,9 @@ export async function Alice(ctcTop, interact) {
   const ctc5 = stdlib.T_Tuple([ctc1, ctc1]);
   const ctc6 = stdlib.T_Digest;
   const ctc7 = stdlib.T_Tuple([ctc1]);
-  const ctc8 = stdlib.T_Address;
+  const ctc8 = stdlib.T_Bool;
+  const ctc9 = stdlib.T_Address;
+  const ctc10 = stdlib.T_Tuple([]);
   
   const map0_ctc = ctc2;
   const map0 = stdlib.newMap({
@@ -85,37 +88,37 @@ export async function Alice(ctcTop, interact) {
     });
   
   
-  const v184 = stdlib.protect(ctc4, await interact.startRaffleDraw(), {
-    at: './index.rsh:43:89:application',
-    fs: ['at ./index.rsh:42:9:application call to [unknown function] (defined at: ./index.rsh:42:13:function exp)'],
+  const v260 = stdlib.protect(ctc4, await interact.startRaffleDraw(), {
+    at: './index.rsh:46:89:application',
+    fs: ['at ./index.rsh:45:9:application call to [unknown function] (defined at: ./index.rsh:45:13:function exp)'],
     msg: 'startRaffleDraw',
     who: 'Alice'
     });
-  const v185 = v184.nftId;
-  const v186 = v184.numberOfBobs;
-  const v187 = v184.numberOfTickets;
-  const v191 = stdlib.protect(ctc1, await interact.getRandomNumber(v187), {
-    at: './index.rsh:44:52:application',
-    fs: ['at ./index.rsh:42:9:application call to [unknown function] (defined at: ./index.rsh:42:13:function exp)'],
+  const v261 = v260.nftId;
+  const v262 = v260.numberOfBobs;
+  const v263 = v260.numberOfTickets;
+  const v267 = stdlib.protect(ctc1, await interact.getRandomNumber(v263), {
+    at: './index.rsh:47:52:application',
+    fs: ['at ./index.rsh:45:9:application call to [unknown function] (defined at: ./index.rsh:45:13:function exp)'],
     msg: 'getRandomNumber',
     who: 'Alice'
     });
-  const v192 = stdlib.protect(ctc1, await interact.random(), {
+  const v268 = stdlib.protect(ctc1, await interact.random(), {
     at: 'reach standard library:64:31:application',
-    fs: ['at ./index.rsh:45:54:application call to "makeCommitment" (defined at: reach standard library:63:8:function exp)', 'at ./index.rsh:42:9:application call to [unknown function] (defined at: ./index.rsh:42:13:function exp)'],
+    fs: ['at ./index.rsh:48:54:application call to "makeCommitment" (defined at: reach standard library:63:8:function exp)', 'at ./index.rsh:45:9:application call to [unknown function] (defined at: ./index.rsh:45:13:function exp)'],
     msg: 'random',
     who: 'Alice'
     });
-  const v193 = stdlib.digest(ctc5, [v192, v191]);
+  const v269 = stdlib.digest(ctc5, [v268, v267]);
   
   const txn1 = await (ctc.sendrecv({
-    args: [v185, v187, v186, v193],
+    args: [v261, v263, v262, v269],
     evt_cnt: 4,
     funcNum: 0,
-    lct: stdlib.checkedBigNumberify('./index.rsh:48:5:dot', stdlib.UInt_max, '0'),
+    lct: stdlib.checkedBigNumberify('./index.rsh:51:5:dot', stdlib.UInt_max, '0'),
     onlyIf: true,
     out_tys: [ctc3, ctc1, ctc1, ctc6],
-    pay: [stdlib.checkedBigNumberify('./index.rsh:48:5:decimal', stdlib.UInt_max, '0'), []],
+    pay: [stdlib.checkedBigNumberify('./index.rsh:51:5:decimal', stdlib.UInt_max, '0'), []],
     sim_p: (async (txn1) => {
       const sim_r = { txns: [], mapRefs: [], maps: [] };
       let sim_txn_ctr = stdlib.UInt_max;
@@ -123,12 +126,12 @@ export async function Alice(ctcTop, interact) {
       
       stdlib.simMapDupe(sim_r, 0, map0);
       
-      const {data: [v196, v197, v198, v199], secs: v201, time: v200, didSend: v41, from: v195 } = txn1;
+      const {data: [v272, v273, v274, v275], secs: v277, time: v276, didSend: v42, from: v271 } = txn1;
       
       sim_r.txns.push({
         amt: stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '0'),
         kind: 'init',
-        tok: v196
+        tok: v272
         });
       ;
       
@@ -141,24 +144,24 @@ export async function Alice(ctcTop, interact) {
     tys: [ctc3, ctc1, ctc1, ctc6],
     waitIfNotPresent: false
     }));
-  const {data: [v196, v197, v198, v199], secs: v201, time: v200, didSend: v41, from: v195 } = txn1;
+  const {data: [v272, v273, v274, v275], secs: v277, time: v276, didSend: v42, from: v271 } = txn1;
   ;
   ;
-  stdlib.protect(ctc0, await interact.displayHashValue(v199), {
-    at: './index.rsh:49:30:application',
-    fs: ['at ./index.rsh:49:30:application call to [unknown function] (defined at: ./index.rsh:49:30:function exp)', 'at ./index.rsh:49:30:application call to "liftedInteract" (defined at: ./index.rsh:49:30:application)'],
+  stdlib.protect(ctc0, await interact.displayHashValue(v275), {
+    at: './index.rsh:52:30:application',
+    fs: ['at ./index.rsh:52:30:application call to [unknown function] (defined at: ./index.rsh:52:30:function exp)', 'at ./index.rsh:52:30:application call to "liftedInteract" (defined at: ./index.rsh:52:30:application)'],
     msg: 'displayHashValue',
     who: 'Alice'
     });
   
   const txn2 = await (ctc.sendrecv({
-    args: [v195, v196, v197, v199],
+    args: [v271, v272, v273, v275],
     evt_cnt: 0,
     funcNum: 1,
-    lct: v200,
+    lct: v276,
     onlyIf: true,
     out_tys: [],
-    pay: [stdlib.checkedBigNumberify('./index.rsh:51:5:dot', stdlib.UInt_max, '0'), [[stdlib.checkedBigNumberify('./index.rsh:4:13:decimal', stdlib.UInt_max, '1'), v196]]],
+    pay: [stdlib.checkedBigNumberify('./index.rsh:54:5:dot', stdlib.UInt_max, '0'), [[stdlib.checkedBigNumberify('./index.rsh:4:13:decimal', stdlib.UInt_max, '1'), v272]]],
     sim_p: (async (txn2) => {
       const sim_r = { txns: [], mapRefs: [], maps: [] };
       let sim_txn_ctr = stdlib.UInt_max;
@@ -166,57 +169,156 @@ export async function Alice(ctcTop, interact) {
       
       stdlib.simMapDupe(sim_r, 0, map0);
       
-      const {data: [], secs: v212, time: v211, didSend: v52, from: v210 } = txn2;
+      const {data: [], secs: v288, time: v287, didSend: v53, from: v286 } = txn2;
       
       ;
       sim_r.txns.push({
         amt: stdlib.checkedBigNumberify('./index.rsh:4:13:decimal', stdlib.UInt_max, '1'),
         kind: 'to',
-        tok: v196
+        tok: v272
         });
       
+      const v304 = v287;
+      const v311 = stdlib.checkedBigNumberify('./index.rsh:43:9:after expr stmt semicolon', stdlib.UInt_max, '0');
       
-      sim_r.isHalt = false;
-      
+      if (await (async () => {
+        
+        return true;})()) {
+        sim_r.isHalt = false;
+        }
+      else {
+        
+        sim_r.isHalt = false;
+        }
       return sim_r;
       }),
     soloSend: true,
     timeoutAt: undefined /* mto */,
-    tys: [ctc8, ctc3, ctc1, ctc6],
+    tys: [ctc9, ctc3, ctc1, ctc6],
     waitIfNotPresent: false
     }));
-  const {data: [], secs: v212, time: v211, didSend: v52, from: v210 } = txn2;
+  const {data: [], secs: v288, time: v287, didSend: v53, from: v286 } = txn2;
   ;
   ;
-  const v222 = stdlib.addressEq(v195, v210);
-  stdlib.assert(v222, {
-    at: './index.rsh:51:5:dot',
+  const v298 = stdlib.addressEq(v271, v286);
+  stdlib.assert(v298, {
+    at: './index.rsh:54:5:dot',
     fs: [],
     msg: 'sender correct',
     who: 'Alice'
     });
   stdlib.protect(ctc0, await interact.getUsers(), {
-    at: './index.rsh:53:22:application',
-    fs: ['at ./index.rsh:53:22:application call to [unknown function] (defined at: ./index.rsh:53:22:function exp)', 'at ./index.rsh:53:22:application call to "liftedInteract" (defined at: ./index.rsh:53:22:application)'],
+    at: './index.rsh:56:22:application',
+    fs: ['at ./index.rsh:56:22:application call to [unknown function] (defined at: ./index.rsh:56:22:function exp)', 'at ./index.rsh:56:22:application call to "liftedInteract" (defined at: ./index.rsh:56:22:application)'],
     msg: 'getUsers',
     who: 'Alice'
     });
   
-  stdlib.protect(ctc0, await interact.displayWinningNumber(v191), {
-    at: './index.rsh:58:34:application',
-    fs: ['at ./index.rsh:55:9:application call to [unknown function] (defined at: ./index.rsh:55:13:function exp)'],
+  let v304 = v287;
+  let v311 = stdlib.checkedBigNumberify('./index.rsh:43:9:after expr stmt semicolon', stdlib.UInt_max, '0');
+  
+  while (await (async () => {
+    
+    return true;})()) {
+    const txn3 = await (ctc.recv({
+      didSend: false,
+      evt_cnt: 1,
+      funcNum: 6,
+      out_tys: [ctc7],
+      timeoutAt: ['time', stdlib.checkedBigNumberify('./index.rsh:78:27:decimal', stdlib.UInt_max, '10')],
+      waitIfNotPresent: false
+      }));
+    if (txn3.didTimeout) {
+      const txn4 = await (ctc.sendrecv({
+        args: [v271, v272, v273, v275, v311],
+        evt_cnt: 0,
+        funcNum: 7,
+        lct: v304,
+        onlyIf: true,
+        out_tys: [],
+        pay: [stdlib.checkedBigNumberify('./index.rsh:79:15:decimal', stdlib.UInt_max, '0'), []],
+        sim_p: (async (txn4) => {
+          const sim_r = { txns: [], mapRefs: [], maps: [] };
+          let sim_txn_ctr = stdlib.UInt_max;
+          const getSimTokCtr = () => { sim_txn_ctr = sim_txn_ctr.sub(1); return sim_txn_ctr; };
+          
+          stdlib.simMapDupe(sim_r, 0, map0);
+          
+          const {data: [], secs: v347, time: v346, didSend: v129, from: v345 } = txn4;
+          
+          ;
+          const cv304 = v346;
+          const cv311 = v311;
+          
+          await (async () => {
+            const v304 = cv304;
+            const v311 = cv311;
+            
+            if (await (async () => {
+              
+              return true;})()) {
+              sim_r.isHalt = false;
+              }
+            else {
+              
+              sim_r.isHalt = false;
+              }})();
+          return sim_r;
+          }),
+        soloSend: true,
+        timeoutAt: undefined /* mto */,
+        tys: [ctc9, ctc3, ctc1, ctc6, ctc1],
+        waitIfNotPresent: false
+        }));
+      const {data: [], secs: v347, time: v346, didSend: v129, from: v345 } = txn4;
+      ;
+      const v348 = stdlib.addressEq(v271, v345);
+      stdlib.assert(v348, {
+        at: './index.rsh:79:15:dot',
+        fs: ['at ./index.rsh:78:35:application call to [unknown function] (defined at: ./index.rsh:78:35:function exp)'],
+        msg: 'sender correct',
+        who: 'Alice'
+        });
+      const cv304 = v346;
+      const cv311 = v311;
+      
+      v304 = cv304;
+      v311 = cv311;
+      
+      continue;
+      }
+    else {
+      const {data: [v329], secs: v331, time: v330, didSend: v100, from: v328 } = txn3;
+      undefined /* setApiDetails */;
+      const v333 = v329[stdlib.checkedBigNumberify('./index.rsh:68:10:spread', stdlib.UInt_max, '0')];
+      ;
+      const v336 = true;
+      await txn3.getOutput('Bob_join', 'v336', ctc8, v336);
+      await stdlib.mapSet(map0, v328, v333);
+      const cv304 = v330;
+      const cv311 = v311;
+      
+      v304 = cv304;
+      v311 = cv311;
+      
+      continue;}
+    
+    }
+  stdlib.protect(ctc0, await interact.displayWinningNumber(v267), {
+    at: './index.rsh:88:34:application',
+    fs: ['at ./index.rsh:85:9:application call to [unknown function] (defined at: ./index.rsh:85:13:function exp)'],
     msg: 'displayWinningNumber',
     who: 'Alice'
     });
   
   const txn3 = await (ctc.sendrecv({
-    args: [v195, v196, v197, v199, v192, v191],
+    args: [v271, v272, v273, v275, v311, v268, v267],
     evt_cnt: 2,
-    funcNum: 2,
-    lct: v211,
+    funcNum: 3,
+    lct: v304,
     onlyIf: true,
     out_tys: [ctc1, ctc1],
-    pay: [stdlib.checkedBigNumberify('./index.rsh:61:5:decimal', stdlib.UInt_max, '0'), []],
+    pay: [stdlib.checkedBigNumberify('./index.rsh:91:5:decimal', stdlib.UInt_max, '0'), []],
     sim_p: (async (txn3) => {
       const sim_r = { txns: [], mapRefs: [], maps: [] };
       let sim_txn_ctr = stdlib.UInt_max;
@@ -224,33 +326,34 @@ export async function Alice(ctcTop, interact) {
       
       stdlib.simMapDupe(sim_r, 0, map0);
       
-      const {data: [v230, v231], secs: v233, time: v232, didSend: v68, from: v229 } = txn3;
+      const {data: [v355, v356], secs: v358, time: v357, didSend: v141, from: v354 } = txn3;
       
       ;
-      const v238 = stdlib.checkedBigNumberify('./index.rsh:71:63:decimal', stdlib.UInt_max, '0');
-      const v239 = v232;
-      const v246 = stdlib.checkedBigNumberify('./index.rsh:40:9:after expr stmt semicolon', stdlib.UInt_max, '0');
+      const v362 = stdlib.checkedBigNumberify('./index.rsh:96:61:decimal', stdlib.UInt_max, '0');
+      const v363 = v271;
+      const v364 = v357;
+      const v371 = v311;
       
       if (await (async () => {
-        const v250 = stdlib.lt(v238, v197);
+        const v375 = stdlib.lt(v362, v273);
         
-        return v250;})()) {
+        return v375;})()) {
         sim_r.isHalt = false;
         }
       else {
         sim_r.txns.push({
           kind: 'from',
-          to: v195,
-          tok: v196
+          to: v363,
+          tok: v272
           });
         sim_r.txns.push({
           kind: 'from',
-          to: v195,
+          to: v271,
           tok: undefined /* Nothing */
           });
         sim_r.txns.push({
           kind: 'halt',
-          tok: v196
+          tok: v272
           })
         sim_r.txns.push({
           kind: 'halt',
@@ -262,56 +365,58 @@ export async function Alice(ctcTop, interact) {
       }),
     soloSend: true,
     timeoutAt: undefined /* mto */,
-    tys: [ctc8, ctc3, ctc1, ctc6, ctc1, ctc1],
+    tys: [ctc9, ctc3, ctc1, ctc6, ctc1, ctc1, ctc1],
     waitIfNotPresent: false
     }));
-  const {data: [v230, v231], secs: v233, time: v232, didSend: v68, from: v229 } = txn3;
+  const {data: [v355, v356], secs: v358, time: v357, didSend: v141, from: v354 } = txn3;
   ;
-  const v234 = stdlib.addressEq(v195, v229);
-  stdlib.assert(v234, {
-    at: './index.rsh:61:5:dot',
+  const v359 = stdlib.addressEq(v271, v354);
+  stdlib.assert(v359, {
+    at: './index.rsh:91:5:dot',
     fs: [],
     msg: 'sender correct',
     who: 'Alice'
     });
-  const v235 = stdlib.digest(ctc5, [v230, v231]);
-  const v236 = stdlib.digestEq(v199, v235);
-  stdlib.assert(v236, {
+  const v360 = stdlib.digest(ctc5, [v355, v356]);
+  const v361 = stdlib.digestEq(v275, v360);
+  stdlib.assert(v361, {
     at: 'reach standard library:69:17:application',
-    fs: ['at ./index.rsh:62:18:application call to "checkCommitment" (defined at: reach standard library:68:8:function exp)'],
+    fs: ['at ./index.rsh:92:18:application call to "checkCommitment" (defined at: reach standard library:68:8:function exp)'],
     msg: null,
     who: 'Alice'
     });
-  let v238 = stdlib.checkedBigNumberify('./index.rsh:71:63:decimal', stdlib.UInt_max, '0');
-  let v239 = v232;
-  let v246 = stdlib.checkedBigNumberify('./index.rsh:40:9:after expr stmt semicolon', stdlib.UInt_max, '0');
+  let v362 = stdlib.checkedBigNumberify('./index.rsh:96:61:decimal', stdlib.UInt_max, '0');
+  let v363 = v271;
+  let v364 = v357;
+  let v371 = v311;
   
   while (await (async () => {
-    const v250 = stdlib.lt(v238, v197);
+    const v375 = stdlib.lt(v362, v273);
     
-    return v250;})()) {
+    return v375;})()) {
     const txn4 = await (ctc.recv({
       didSend: false,
       evt_cnt: 1,
-      funcNum: 4,
-      out_tys: [ctc7],
+      funcNum: 5,
+      out_tys: [ctc10],
       timeoutAt: undefined /* mto */,
       waitIfNotPresent: false
       }));
-    const {data: [v261], secs: v263, time: v262, didSend: v114, from: v260 } = txn4;
+    const {data: [v382], secs: v384, time: v383, didSend: v179, from: v381 } = txn4;
     undefined /* setApiDetails */;
-    const v265 = v261[stdlib.checkedBigNumberify('./index.rsh:74:10:spread', stdlib.UInt_max, '0')];
     ;
-    await txn4.getOutput('Bob_getRandomNumber', 'v265', ctc1, v265);
-    await stdlib.mapSet(map0, v260, v265);
-    const v274 = stdlib.add(v238, stdlib.checkedBigNumberify('./index.rsh:86:41:decimal', stdlib.UInt_max, '1'));
-    const cv238 = v274;
-    const cv239 = v262;
-    const cv246 = v246;
+    const v386 = stdlib.protect(map0_ctc, await stdlib.mapRef(map0, v381), null);
+    await txn4.getOutput('Bob_getReward', 'v386', ctc2, v386);
+    const v394 = stdlib.add(v362, stdlib.checkedBigNumberify('./index.rsh:104:42:decimal', stdlib.UInt_max, '1'));
+    const cv362 = v394;
+    const cv363 = v271;
+    const cv364 = v383;
+    const cv371 = v371;
     
-    v238 = cv238;
-    v239 = cv239;
-    v246 = cv246;
+    v362 = cv362;
+    v363 = cv363;
+    v364 = cv364;
+    v371 = cv371;
     
     continue;
     
@@ -326,11 +431,11 @@ export async function Alice(ctcTop, interact) {
   
   
   };
-export async function _Bob_getRandomNumber5(ctcTop, interact) {
+export async function _Bob_getReward6(ctcTop, interact) {
   if (typeof(ctcTop) !== 'object' || ctcTop._initialize === undefined) {
-    return Promise.reject(new Error(`The backend for _Bob_getRandomNumber5 expects to receive a contract as its first argument.`));}
+    return Promise.reject(new Error(`The backend for _Bob_getReward6 expects to receive a contract as its first argument.`));}
   if (typeof(interact) !== 'object') {
-    return Promise.reject(new Error(`The backend for _Bob_getRandomNumber5 expects to receive an interact object as its second argument.`));}
+    return Promise.reject(new Error(`The backend for _Bob_getReward6 expects to receive an interact object as its second argument.`));}
   const ctc = ctcTop._initialize();
   const stdlib = ctc.stdlib;
   const ctc0 = stdlib.T_Null;
@@ -341,7 +446,7 @@ export async function _Bob_getRandomNumber5(ctcTop, interact) {
     });
   const ctc3 = stdlib.T_Address;
   const ctc4 = stdlib.T_Token;
-  const ctc5 = stdlib.T_Tuple([ctc1]);
+  const ctc5 = stdlib.T_Tuple([]);
   
   const map0_ctc = ctc2;
   const map0 = stdlib.newMap({
@@ -352,22 +457,22 @@ export async function _Bob_getRandomNumber5(ctcTop, interact) {
     });
   
   
-  const [v195, v196, v197, v238, v246] = await ctc.getState(stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '5'), [ctc3, ctc4, ctc1, ctc1, ctc1]);
-  const v253 = stdlib.protect(ctc5, await interact.in(), {
+  const [v271, v272, v273, v362, v371] = await ctc.getState(stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '6'), [ctc3, ctc4, ctc1, ctc1, ctc1]);
+  const v378 = stdlib.protect(ctc5, await interact.in(), {
     at: './index.rsh:1:23:application',
-    fs: ['at ./index.rsh:74:39:application call to [unknown function] (defined at: ./index.rsh:74:39:function exp)', 'at ./index.rsh:74:39:application call to [unknown function] (defined at: ./index.rsh:74:39:function exp)'],
+    fs: ['at ./index.rsh:99:27:application call to [unknown function] (defined at: ./index.rsh:99:27:function exp)', 'at ./index.rsh:99:27:application call to [unknown function] (defined at: ./index.rsh:99:27:function exp)'],
     msg: 'in',
-    who: 'Bob_getRandomNumber'
+    who: 'Bob_getReward'
     });
   
   const txn1 = await (ctc.sendrecv({
-    args: [v195, v196, v197, v238, v246, v253],
+    args: [v271, v272, v273, v362, v371, v378],
     evt_cnt: 1,
-    funcNum: 4,
+    funcNum: 5,
     lct: stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '0'),
     onlyIf: true,
     out_tys: [ctc5],
-    pay: [stdlib.checkedBigNumberify('./index.rsh:75:15:decimal', stdlib.UInt_max, '0'), []],
+    pay: [stdlib.checkedBigNumberify('./index.rsh:100:15:decimal', stdlib.UInt_max, '0'), []],
     sim_p: (async (txn1) => {
       const sim_r = { txns: [], mapRefs: [], maps: [] };
       let sim_txn_ctr = stdlib.UInt_max;
@@ -375,38 +480,37 @@ export async function _Bob_getRandomNumber5(ctcTop, interact) {
       
       stdlib.simMapDupe(sim_r, 0, map0);
       
-      const {data: [v261], secs: v263, time: v262, didSend: v114, from: v260 } = txn1;
+      const {data: [v382], secs: v384, time: v383, didSend: v179, from: v381 } = txn1;
       
       sim_r.txns.push({
         kind: 'api',
-        who: "Bob_getRandomNumber"
+        who: "Bob_getReward"
         });
-      const v265 = v261[stdlib.checkedBigNumberify('./index.rsh:74:10:spread', stdlib.UInt_max, '0')];
       ;
-      const v268 = await txn1.getOutput('Bob_getRandomNumber', 'v265', ctc1, v265);
+      const v386 = stdlib.protect(map0_ctc, await stdlib.simMapRef(sim_r, 0, v381), null);
+      const v387 = await txn1.getOutput('Bob_getReward', 'v386', ctc2, v386);
       
-      await stdlib.simMapSet(sim_r, 0, v260, v265);
-      const v274 = stdlib.add(v238, stdlib.checkedBigNumberify('./index.rsh:86:41:decimal', stdlib.UInt_max, '1'));
-      const v383 = v274;
-      const v385 = v246;
-      const v386 = stdlib.lt(v274, v197);
-      if (v386) {
+      const v394 = stdlib.add(v362, stdlib.checkedBigNumberify('./index.rsh:104:42:decimal', stdlib.UInt_max, '1'));
+      const v591 = v394;
+      const v594 = v371;
+      const v595 = stdlib.lt(v394, v273);
+      if (v595) {
         sim_r.isHalt = false;
         }
       else {
         sim_r.txns.push({
           kind: 'from',
-          to: v195,
-          tok: v196
+          to: v271,
+          tok: v272
           });
         sim_r.txns.push({
           kind: 'from',
-          to: v195,
+          to: v271,
           tok: undefined /* Nothing */
           });
         sim_r.txns.push({
           kind: 'halt',
-          tok: v196
+          tok: v272
           })
         sim_r.txns.push({
           kind: 'halt',
@@ -421,28 +525,27 @@ export async function _Bob_getRandomNumber5(ctcTop, interact) {
     tys: [ctc3, ctc4, ctc1, ctc1, ctc1, ctc5],
     waitIfNotPresent: false
     }));
-  const {data: [v261], secs: v263, time: v262, didSend: v114, from: v260 } = txn1;
+  const {data: [v382], secs: v384, time: v383, didSend: v179, from: v381 } = txn1;
   undefined /* setApiDetails */;
-  const v265 = v261[stdlib.checkedBigNumberify('./index.rsh:74:10:spread', stdlib.UInt_max, '0')];
   ;
-  const v268 = await txn1.getOutput('Bob_getRandomNumber', 'v265', ctc1, v265);
-  if (v114) {
-    stdlib.protect(ctc0, await interact.out(v261, v268), {
-      at: './index.rsh:74:11:application',
-      fs: ['at ./index.rsh:74:11:application call to [unknown function] (defined at: ./index.rsh:74:11:function exp)', 'at ./index.rsh:76:15:application call to "notify" (defined at: ./index.rsh:75:27:function exp)', 'at ./index.rsh:75:27:application call to [unknown function] (defined at: ./index.rsh:75:27:function exp)'],
+  const v386 = stdlib.protect(map0_ctc, await stdlib.mapRef(map0, v381), null);
+  const v387 = await txn1.getOutput('Bob_getReward', 'v386', ctc2, v386);
+  if (v179) {
+    stdlib.protect(ctc0, await interact.out(v382, v387), {
+      at: './index.rsh:99:11:application',
+      fs: ['at ./index.rsh:99:11:application call to [unknown function] (defined at: ./index.rsh:99:11:function exp)', 'at ./index.rsh:103:15:application call to "notify" (defined at: ./index.rsh:100:27:function exp)', 'at ./index.rsh:100:27:application call to [unknown function] (defined at: ./index.rsh:100:27:function exp)'],
       msg: 'out',
-      who: 'Bob_getRandomNumber'
+      who: 'Bob_getReward'
       });
     }
   else {
     }
   
-  await stdlib.mapSet(map0, v260, v265);
-  const v274 = stdlib.add(v238, stdlib.checkedBigNumberify('./index.rsh:86:41:decimal', stdlib.UInt_max, '1'));
-  const v383 = v274;
-  const v385 = v246;
-  const v386 = stdlib.lt(v274, v197);
-  if (v386) {
+  const v394 = stdlib.add(v362, stdlib.checkedBigNumberify('./index.rsh:104:42:decimal', stdlib.UInt_max, '1'));
+  const v591 = v394;
+  const v594 = v371;
+  const v595 = stdlib.lt(v394, v273);
+  if (v595) {
     return;
     }
   else {
@@ -453,31 +556,139 @@ export async function _Bob_getRandomNumber5(ctcTop, interact) {
   
   
   };
-export async function Bob_getRandomNumber(ctcTop, interact) {
+export async function _Bob_join7(ctcTop, interact) {
   if (typeof(ctcTop) !== 'object' || ctcTop._initialize === undefined) {
-    return Promise.reject(new Error(`The backend for Bob_getRandomNumber expects to receive a contract as its first argument.`));}
+    return Promise.reject(new Error(`The backend for _Bob_join7 expects to receive a contract as its first argument.`));}
   if (typeof(interact) !== 'object') {
-    return Promise.reject(new Error(`The backend for Bob_getRandomNumber expects to receive an interact object as its second argument.`));}
+    return Promise.reject(new Error(`The backend for _Bob_join7 expects to receive an interact object as its second argument.`));}
+  const ctc = ctcTop._initialize();
+  const stdlib = ctc.stdlib;
+  const ctc0 = stdlib.T_Null;
+  const ctc1 = stdlib.T_UInt;
+  const ctc2 = stdlib.T_Data({
+    None: ctc0,
+    Some: ctc1
+    });
+  const ctc3 = stdlib.T_Address;
+  const ctc4 = stdlib.T_Token;
+  const ctc5 = stdlib.T_Digest;
+  const ctc6 = stdlib.T_Tuple([ctc1]);
+  const ctc7 = stdlib.T_Bool;
+  
+  const map0_ctc = ctc2;
+  const map0 = stdlib.newMap({
+    ctc: ctc,
+    idx: 0,
+    isAPI: true,
+    ty: map0_ctc
+    });
+  
+  
+  const [v271, v272, v273, v275, v311] = await ctc.getState(stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '7'), [ctc3, ctc4, ctc1, ctc5, ctc1]);
+  const v321 = stdlib.protect(ctc6, await interact.in(), {
+    at: './index.rsh:1:23:application',
+    fs: ['at ./index.rsh:68:25:application call to [unknown function] (defined at: ./index.rsh:68:25:function exp)', 'at ./index.rsh:68:25:application call to [unknown function] (defined at: ./index.rsh:68:25:function exp)'],
+    msg: 'in',
+    who: 'Bob_join'
+    });
+  
+  const txn1 = await (ctc.sendrecv({
+    args: [v271, v272, v273, v275, v311, v321],
+    evt_cnt: 1,
+    funcNum: 6,
+    lct: stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '0'),
+    onlyIf: true,
+    out_tys: [ctc6],
+    pay: [stdlib.checkedBigNumberify('./index.rsh:70:15:decimal', stdlib.UInt_max, '0'), []],
+    sim_p: (async (txn1) => {
+      const sim_r = { txns: [], mapRefs: [], maps: [] };
+      let sim_txn_ctr = stdlib.UInt_max;
+      const getSimTokCtr = () => { sim_txn_ctr = sim_txn_ctr.sub(1); return sim_txn_ctr; };
+      
+      stdlib.simMapDupe(sim_r, 0, map0);
+      
+      const {data: [v329], secs: v331, time: v330, didSend: v100, from: v328 } = txn1;
+      
+      sim_r.txns.push({
+        kind: 'api',
+        who: "Bob_join"
+        });
+      const v333 = v329[stdlib.checkedBigNumberify('./index.rsh:68:10:spread', stdlib.UInt_max, '0')];
+      ;
+      const v336 = true;
+      const v337 = await txn1.getOutput('Bob_join', 'v336', ctc7, v336);
+      
+      await stdlib.simMapSet(sim_r, 0, v328, v333);
+      const v597 = v311;
+      sim_r.isHalt = false;
+      
+      return sim_r;
+      }),
+    soloSend: false,
+    timeoutAt: undefined /* mto */,
+    tys: [ctc3, ctc4, ctc1, ctc5, ctc1, ctc6],
+    waitIfNotPresent: false
+    }));
+  const {data: [v329], secs: v331, time: v330, didSend: v100, from: v328 } = txn1;
+  undefined /* setApiDetails */;
+  const v333 = v329[stdlib.checkedBigNumberify('./index.rsh:68:10:spread', stdlib.UInt_max, '0')];
+  ;
+  const v336 = true;
+  const v337 = await txn1.getOutput('Bob_join', 'v336', ctc7, v336);
+  if (v100) {
+    stdlib.protect(ctc0, await interact.out(v329, v337), {
+      at: './index.rsh:68:11:application',
+      fs: ['at ./index.rsh:68:11:application call to [unknown function] (defined at: ./index.rsh:68:11:function exp)', 'at ./index.rsh:71:10:application call to "k" (defined at: ./index.rsh:70:22:function exp)', 'at ./index.rsh:70:22:application call to [unknown function] (defined at: ./index.rsh:70:22:function exp)'],
+      msg: 'out',
+      who: 'Bob_join'
+      });
+    }
+  else {
+    }
+  
+  await stdlib.mapSet(map0, v328, v333);
+  const v597 = v311;
+  return;
+  
+  
+  
+  };
+export async function Bob_getReward(ctcTop, interact) {
+  if (typeof(ctcTop) !== 'object' || ctcTop._initialize === undefined) {
+    return Promise.reject(new Error(`The backend for Bob_getReward expects to receive a contract as its first argument.`));}
+  if (typeof(interact) !== 'object') {
+    return Promise.reject(new Error(`The backend for Bob_getReward expects to receive an interact object as its second argument.`));}
   const ctc = ctcTop._initialize();
   const stdlib = ctc.stdlib;
   const step = await ctc.getCurrentStep()
-  if (step == 5) {return _Bob_getRandomNumber5(ctcTop, interact);}
-  throw stdlib.apiStateMismatchError({ _stateSourceMap }, [stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '5')], stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, step))
+  if (step == 6) {return _Bob_getReward6(ctcTop, interact);}
+  throw stdlib.apiStateMismatchError({ _stateSourceMap }, [stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '6')], stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, step))
+  };
+export async function Bob_join(ctcTop, interact) {
+  if (typeof(ctcTop) !== 'object' || ctcTop._initialize === undefined) {
+    return Promise.reject(new Error(`The backend for Bob_join expects to receive a contract as its first argument.`));}
+  if (typeof(interact) !== 'object') {
+    return Promise.reject(new Error(`The backend for Bob_join expects to receive an interact object as its second argument.`));}
+  const ctc = ctcTop._initialize();
+  const stdlib = ctc.stdlib;
+  const step = await ctc.getCurrentStep()
+  if (step == 7) {return _Bob_join7(ctcTop, interact);}
+  throw stdlib.apiStateMismatchError({ _stateSourceMap }, [stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '7')], stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, step))
   };
 const _ALGO = {
   ABI: {
-    impure: [`Bob_getRandomNumber(uint64)uint64`],
+    impure: [`Bob_getReward()(byte,byte[8])`, `Bob_join(uint64)byte`],
     pure: [],
-    sigs: [`Bob_getRandomNumber(uint64)uint64`]
+    sigs: [`Bob_getReward()(byte,byte[8])`, `Bob_join(uint64)byte`]
     },
-  appApproval: `BiAJAAEEAggFICigjQYmAgEAACI1ADEYQQLDKWRJIls1ASEEWzUCMRkjEkEACjEAKIEJr2ZCAo82GgAXSUEAFCI1BCM1BoH3j62VDhJENhoBQgAcNhoCFzUENhoDNhoBF0klDEAA0kkkDEAAayQSRCEFNAESRDQESSISTDQCEhFEKGQ1A0k1BTX/gATOPHBmNP9QsDT/FzX+gAgAAAAAAAABCTT+FlCwNP4WNQcxACiAAQE0/hZQZjQDVwAgNAMhBls0AyEHWzQDgTBbIwgyBjQDgThbQgFAJRJEJTQBEkQ0BEkiEkw0AhIRRChkSTUDVwAgNf9JNQVJIls1/iEEWzX9gATzLQoMNP4WUDT9FlCwNP8xABJENANXMCA0/hY0/RZQARJENP80AyEGWzQDIQdbIjIGIkIA30kjDEAAXkgjNAESRDQESSISTDQCEhFEKGRJNQNJSlcAIDX/IQZbNf4hB1s1/VcwIDX8gASai5F0sCM0/ogBmzT/MQASRDT/NP4WUDT9FlA0/FAoSwFXAFBnSCU1ATIGNQJCAQ1IIQiIAVgiNAESRDQESSISTDQCEhFESTUFSUoiWzX/IQRbNf6BEFs1/VcYIDX8gASjiaHBNP8WUDT+FlA0/RZQNPxQsCEIiAEVsSKyASKyEiSyEDIKshQ0/7IRszEANP8WUDT+FlA0/FAoSwFXAFBnSCM1ATIGNQJCAJI1/zX+Nf01/DX7Nfo0/TT8DEEAJTT6NPsWUDT8FlA0/RZQNP8WUChLAVcAQGdIIQU1ATIGNQJCAFmxIrIBI7ISJLIQNPqyFDT7shGzsSKyATT/sggjshA0+rIHs7EisgEishIkshAyCbIVMgqyFDT7shGzQgAAMRkhBRJEsSKyASKyCCOyEDIJsgkyCrIHs0IABTEZIhJEKTQBFjQCFlBnNAZBAAqABBUffHU0B1CwNABJIwgyBBJEMRYSRCNDMRkiEkRC/98iMTQSRCUxNRJEIjE2EkQjMTcSRCI1ASI1AkL/rzQASUojCDUAOAcyChJEOBAjEkQ4CBJEiTQASUpJIwg1ADgUMgoSRDgQJBJEOBFPAhJEOBISRIk=`,
+  appApproval: `BiAPAAEHICgECAZQAwnHpLT9CwUKoI0GJgMBAAABASI1ADEYQQOkKWRJIls1ASEGWzUCMRkjEkEACjEAKCEKr2ZCA3A2GgAXSUEAIyI1BCM1BkkhCwxAAAghCxJEKUIA2IGVm9TgBRJENhoBQgBsNhoCFzUENhoDNhoBF0khDAxAARZJIQcMQACuSSQMQABKJBJEJDQBEkQ0BEkiEkw0AhIRRChkSTUDVwAgNf+ABOIbs6mwMgYhDQ9ENP8xABJENP80AyVbNAMhBFs0A1cwIDIGNAMhCFtCAflIJDQBEkQ0BEkiEkw0AhIRRChkNQNJNQU1/4AEdHioJDT/ULAyBiENDESACQAAAAAAAAFQAbAqNQcxACgqNP9QZjQDVwAgNAMlWzQDIQRbNANXMCAyBjQDIQhbQgGbSCEHNAESRDQESSISTDQCEhFEKGRJNQNXACA1/0k1BTX+gARokmRjNP5QsIAIAAAAAAAAAYIxAIgCd1CwMQCIAnA1BzT/NAMlWzQDIQRbNAOBMFsjCDT/MgY0A4E4W0IBaEkjDEAAuEkhCQxAAGghCRJEIQk0ARJENARJIhJMNAISEUQoZEk1A1cAIDX/STUFSSJbNf4hBls1/YAEpKXwiDT+FlA0/RZQsDT/MQASRDQDVzAgNP4WNP0WUAESRDT/NAMlWzQDIQRbIjT/MgY0AyEIW0IA8yMSRCM0ARJENARJIhJMNAISEUQoZEk1A0lXACA1/yVbNf6ABJqLkXSwIzT+iAHTNP8xABJENP80/jQDIQRbNANXMCAyBiJCAHxIIQ6IAZsiNAESRDQESSISTDQCEhFESTUFSUoiWzX/IQZbNf6BEFs1/VcYIDX8gASjiaHBNP8WUDT+FlA0/RZQNPxQsCEOiAFYsSKyASKyEiEFshAyCrIUNP+yEbMxADT/FlA0/hZQNPxQKEsBVwBQZ0gjNQEyBjUCQgDENf81/jX9Nfw1+0k1+jT7FlA0/BZQNP1QNP8WUChLAVcAWGdIJDUBMgY1AkIAljX/Nf41/TX8Nfs1+jX5NPw0+wxBACU0+TT6FlA0+xZQNPwWUDT/FlAoSwFXAEBnSCEHNQEyBjUCQgBbsSKyASOyEiEFshA0/bIUNPqyEbOxIrIBNP+yCCOyEDT5sgezsSKyASKyEiEFshAyCbIVMgqyFDT6shGzQgAAMRkhDBJEsSKyASKyCCOyEDIJsgkyCrIHs0IABTEZIhJEKTQBFjQCFlBnNAZBAAqABBUffHU0B1CwNABJIwgyBBJEMRYSRCNDMRkiEkRC/98iMTQSRIECMTUSRCIxNhJEIzE3EkQiNQEiNQJC/65JMRhhQAAFSCEKr4koYok0AElKIwg1ADgHMgoSRDgQIxJEOAgSRIk0AElKSSMINQA4FDIKEkQ4ECEFEkQ4EU8CEkQ4EhJEiQ==`,
   appClear: `Bg==`,
   companionInfo: null,
   extraPages: 0,
   mapDataKeys: 1,
   mapDataSize: 9,
   stateKeys: 1,
-  stateSize: 80,
+  stateSize: 88,
   unsupported: [],
   version: 10,
   warnings: []
@@ -497,22 +708,22 @@ const _ETH = {
             "components": [
               {
                 "internalType": "address payable",
-                "name": "v196",
+                "name": "v272",
                 "type": "address"
               },
               {
                 "internalType": "uint256",
-                "name": "v197",
+                "name": "v273",
                 "type": "uint256"
               },
               {
                 "internalType": "uint256",
-                "name": "v198",
+                "name": "v274",
                 "type": "uint256"
               },
               {
                 "internalType": "uint256",
-                "name": "v199",
+                "name": "v275",
                 "type": "uint256"
               }
             ],
@@ -560,22 +771,22 @@ const _ETH = {
             "components": [
               {
                 "internalType": "address payable",
-                "name": "v196",
+                "name": "v272",
                 "type": "address"
               },
               {
                 "internalType": "uint256",
-                "name": "v197",
+                "name": "v273",
                 "type": "uint256"
               },
               {
                 "internalType": "uint256",
-                "name": "v198",
+                "name": "v274",
                 "type": "uint256"
               },
               {
                 "internalType": "uint256",
-                "name": "v199",
+                "name": "v275",
                 "type": "uint256"
               }
             ],
@@ -616,7 +827,7 @@ const _ETH = {
           }
         ],
         "indexed": false,
-        "internalType": "struct T5",
+        "internalType": "struct T7",
         "name": "_a",
         "type": "tuple"
       }
@@ -644,27 +855,65 @@ const _ETH = {
             "components": [
               {
                 "internalType": "uint256",
-                "name": "v230",
+                "name": "v355",
                 "type": "uint256"
               },
               {
                 "internalType": "uint256",
-                "name": "v231",
+                "name": "v356",
                 "type": "uint256"
               }
             ],
-            "internalType": "struct T9",
+            "internalType": "struct T12",
             "name": "msg",
             "type": "tuple"
           }
         ],
         "indexed": false,
-        "internalType": "struct T10",
+        "internalType": "struct T13",
         "name": "_a",
         "type": "tuple"
       }
     ],
-    "name": "_reach_e2",
+    "name": "_reach_e3",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_who",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "time",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "bool",
+                "name": "v382",
+                "type": "bool"
+              }
+            ],
+            "internalType": "struct T16",
+            "name": "msg",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct T17",
+        "name": "_a",
+        "type": "tuple"
+      }
+    ],
+    "name": "_reach_e5",
     "type": "event"
   },
   {
@@ -693,23 +942,23 @@ const _ETH = {
                     "type": "uint256"
                   }
                 ],
-                "internalType": "struct T12",
-                "name": "v261",
+                "internalType": "struct T18",
+                "name": "v329",
                 "type": "tuple"
               }
             ],
-            "internalType": "struct T13",
+            "internalType": "struct T19",
             "name": "msg",
             "type": "tuple"
           }
         ],
         "indexed": false,
-        "internalType": "struct T14",
+        "internalType": "struct T20",
         "name": "_a",
         "type": "tuple"
       }
     ],
-    "name": "_reach_e4",
+    "name": "_reach_e6",
     "type": "event"
   },
   {
@@ -717,17 +966,108 @@ const _ETH = {
     "inputs": [
       {
         "indexed": false,
-        "internalType": "uint256",
-        "name": "v0",
-        "type": "uint256"
+        "internalType": "address",
+        "name": "_who",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "time",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "msg",
+            "type": "bool"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct T7",
+        "name": "_a",
+        "type": "tuple"
       }
     ],
-    "name": "_reach_oe_v265",
+    "name": "_reach_e7",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "v0",
+        "type": "bool"
+      }
+    ],
+    "name": "_reach_oe_v336",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "enum _enum_T0",
+            "name": "which",
+            "type": "uint8"
+          },
+          {
+            "internalType": "bool",
+            "name": "_None",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_Some",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct T0",
+        "name": "v0",
+        "type": "tuple"
+      }
+    ],
+    "name": "_reach_oe_v386",
     "type": "event"
   },
   {
     "stateMutability": "payable",
     "type": "fallback"
+  },
+  {
+    "inputs": [],
+    "name": "Bob_getReward",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "enum _enum_T0",
+            "name": "which",
+            "type": "uint8"
+          },
+          {
+            "internalType": "bool",
+            "name": "_None",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_Some",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct T0",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
   },
   {
     "inputs": [
@@ -737,12 +1077,12 @@ const _ETH = {
         "type": "uint256"
       }
     ],
-    "name": "Bob_getRandomNumber",
+    "name": "Bob_join",
     "outputs": [
       {
-        "internalType": "uint256",
+        "internalType": "bool",
         "name": "",
-        "type": "uint256"
+        "type": "bool"
       }
     ],
     "stateMutability": "payable",
@@ -843,7 +1183,7 @@ const _ETH = {
             "type": "bool"
           }
         ],
-        "internalType": "struct T5",
+        "internalType": "struct T7",
         "name": "_a",
         "type": "tuple"
       }
@@ -866,26 +1206,58 @@ const _ETH = {
             "components": [
               {
                 "internalType": "uint256",
-                "name": "v230",
+                "name": "v355",
                 "type": "uint256"
               },
               {
                 "internalType": "uint256",
-                "name": "v231",
+                "name": "v356",
                 "type": "uint256"
               }
             ],
-            "internalType": "struct T9",
+            "internalType": "struct T12",
             "name": "msg",
             "type": "tuple"
           }
         ],
-        "internalType": "struct T10",
+        "internalType": "struct T13",
         "name": "_a",
         "type": "tuple"
       }
     ],
-    "name": "_reach_m2",
+    "name": "_reach_m3",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "time",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "bool",
+                "name": "v382",
+                "type": "bool"
+              }
+            ],
+            "internalType": "struct T16",
+            "name": "msg",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct T17",
+        "name": "_a",
+        "type": "tuple"
+      }
+    ],
+    "name": "_reach_m5",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"
@@ -909,22 +1281,47 @@ const _ETH = {
                     "type": "uint256"
                   }
                 ],
-                "internalType": "struct T12",
-                "name": "v261",
+                "internalType": "struct T18",
+                "name": "v329",
                 "type": "tuple"
               }
             ],
-            "internalType": "struct T13",
+            "internalType": "struct T19",
             "name": "msg",
             "type": "tuple"
           }
         ],
-        "internalType": "struct T14",
+        "internalType": "struct T20",
         "name": "_a",
         "type": "tuple"
       }
     ],
-    "name": "_reach_m4",
+    "name": "_reach_m6",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "time",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "msg",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct T7",
+        "name": "_a",
+        "type": "tuple"
+      }
+    ],
+    "name": "_reach_m7",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"
@@ -934,8 +1331,8 @@ const _ETH = {
     "type": "receive"
   }
 ]`,
-  Bytecode: `0x60806040526040516200164d3803806200164d833981016040819052620000269162000252565b60008055436003556040805133815282516020808301919091528084015180516001600160a01b03168385015290810151606080840191909152818401516080840152015160a082015290517f112545cf4cc4ef4cc46259a35cf4621d5a4b14828a08081bb8649d32a39f1bd99181900360c00190a1620000aa341560076200014b565b6040805160808082018352600060208084018281528486018381526060808701858152338089528a86018051516001600160a01b0390811687528151880151865290518401518352600197889055439097558951808701919091529351909516838901529051908201529151828401528451808303909301835260a09091019093528051919262000142926002929091019062000175565b50505062000349565b81620001715760405163100960cb60e01b81526004810182905260240160405180910390fd5b5050565b82805462000183906200030c565b90600052602060002090601f016020900481019282620001a75760008555620001f2565b82601f10620001c257805160ff1916838001178555620001f2565b82800160010185558215620001f2579182015b82811115620001f2578251825591602001919060010190620001d5565b506200020092915062000204565b5090565b5b8082111562000200576000815560010162000205565b604051608081016001600160401b03811182821017156200024c57634e487b7160e01b600052604160045260246000fd5b60405290565b600081830360a08112156200026657600080fd5b604080519081016001600160401b03811182821017156200029757634e487b7160e01b600052604160045260246000fd5b604052835181526080601f1983011215620002b157600080fd5b620002bb6200021b565b60208501519092506001600160a01b0381168114620002d957600080fd5b80835250604084015160208301526060840151604083015260808401516060830152816020820152809250505092915050565b600181811c908216806200032157607f821691505b602082108114156200034357634e487b7160e01b600052602260045260246000fd5b50919050565b6112f480620003596000396000f3fe6080604052600436106100795760003560e01c806362d9e3e71161004b57806362d9e3e7146100f9578063832307571461010c5780639014596a14610121578063ab53f2c61461013457005b80630cf4bd23146100825780631e93b0f1146100955780632c10a159146100b95780633bc5b7bf146100cc57005b3661008057005b005b610080610090366004610e7e565b610157565b3480156100a157600080fd5b506003545b6040519081526020015b60405180910390f35b6100806100c7366004610e7e565b610182565b3480156100d857600080fd5b506100ec6100e7366004610eaf565b6101a9565b6040516100b09190610ee2565b6100a6610107366004610f27565b6101d5565b34801561011857600080fd5b506001546100a6565b61008061012f366004610f40565b610208565b34801561014057600080fd5b5061014961022f565b6040516100b0929190610f7e565b60408051602081019091526000815261017e61017836849003840184611020565b826102cc565b5050565b60408051602081019091526000815261017e6101a336849003840184611085565b826104c7565b60408051606081018252600080825260208201819052918101919091526101cf826106b5565b92915050565b60006101df610d18565b602080820151518490526040805191820190526000815261020082826102cc565b519392505050565b60408051602081019091526000815261017e610229368490038401846110bd565b82610787565b60006060600054600280805461024490611117565b80601f016020809104026020016040519081016040528092919081815260200182805461027090611117565b80156102bd5780601f10610292576101008083540402835291602001916102bd565b820191906000526020600020905b8154815290600101906020018083116102a057829003601f168201915b50505050509050915091509091565b6102dc600560005414601361096f565b81516102f79015806102f057508251600154145b601461096f565b60008080556002805461030990611117565b80601f016020809104026020016040519081016040528092919081815260200182805461033590611117565b80156103825780601f1061035757610100808354040283529160200191610382565b820191906000526020600020905b81548152906001019060200180831161036557829003601f168201915b505050505080602001905181019061039a919061114c565b60408051338152855160208083019190915286015151518183015290519192507f20e0220c6adfa181ccdf66a11a035e7ee7bc6900d5aa40894042309f10f8f0f9919081900360600190a16103f13415601261096f565b60208381015151516040519081527ff17b4f11cf420caed94c8b7d635eb79751b0a9b2dad0fdc310214d6ab169b56a910160405180910390a1602083810180515151845233600090815260049092526040909120805460ff19166001908117825591515151910155610461610d4a565b815181516001600160a01b03918216905260208084015183519216910152604080830151825190910152606082015161049c906001906111dc565b602080830180519290925281514391015260808301519051604001526104c181610995565b50505050565b6104d7600160005414600b61096f565b81516104f29015806104eb57508251600154145b600c61096f565b60008080556002805461050490611117565b80601f016020809104026020016040519081016040528092919081815260200182805461053090611117565b801561057d5780601f106105525761010080835404028352916020019161057d565b820191906000526020600020905b81548152906001019060200180831161056057829003601f168201915b50505050508060200190518101906105959190611202565b60408051338152855160208083019190915286015115158183015290519192507f400d21ea4e4a5e28b4ae5f0f476c201fc8036473fcf7c8cd252f38698020b4f1919081900360600190a16105ec3415600861096f565b6106066105ff3383602001516001610b06565b600961096f565b805161061e906001600160a01b03163314600a61096f565b604080516080808201835260008083526020808401828152848601838152606080870185815289516001600160a01b03908116808a528b870151821686528b8b015185528b8401518352600297889055436001558a5180880191909152945116848a015291519083015251818501528551808203909401845260a001909452815192936106ae9391920190610d97565b5050505050565b604080516060810182526000808252602082018190529181019190915260016001600160a01b03831660009081526004602052604090205460ff16600181111561070157610701610ecc565b1415610778576001600160a01b038216600090815260046020526040908190208151606081019092528054829060ff16600181111561074257610742610ecc565b600181111561075357610753610ecc565b81528154610100900460ff161515602082015260019091015460409091015292915050565b60008082526020820152919050565b610797600260005414601061096f565b81516107b29015806107ab57508251600154145b601161096f565b6000808055600280546107c490611117565b80601f01602080910402602001604051908101604052809291908181526020018280546107f090611117565b801561083d5780601f106108125761010080835404028352916020019161083d565b820191906000526020600020905b81548152906001019060200180831161082057829003601f168201915b50505050508060200190518101906108559190611202565b604080513381528551602080830191909152808701518051838501520151606082015290519192507feade97c60783e4c8b7590ebdcad0dcf3d731471c98f3f06328d9701c9d0e1969919081900360800190a16108b43415600d61096f565b80516108cc906001600160a01b03163314600e61096f565b60208084015180519082015160405161091a936108f493929101918252602082015260400190565b6040516020818303038152906040528051906020012060001c826060015114600f61096f565b610922610d4a565b815181516001600160a01b0391821690526020808401518351921691810191909152604080840151835182015281830180516000908190528151439401939093525101526104c181610995565b8161017e5760405163100960cb60e01b8152600481018290526024015b60405180910390fd5b8051604001516020820151511015610a94576109eb6040518060a0016040528060006001600160a01b0316815260200160006001600160a01b031681526020016000815260200160008152602001600081525090565b8151516001600160a01b039081168083528351602090810151831681850190815285516040908101518187019081528388018051516060808a0191825291518401516080808b019182526005600055436001558551978801989098529451909716928501929092525190830152925191810191909152905160a082015260c00160405160208183030381529060405260029080519060200190610a8f929190610d97565b505050565b805160208101519051610aa991906001610b1e565b805151602082015160409081015190516001600160a01b039092169181156108fc0291906000818181858888f19350505050158015610aec573d6000803e3d6000fd5b5060008080556001819055610b0390600290610e1b565b50565b6000610b1483853085610b32565b90505b9392505050565b610b29838383610c0c565b610a8f57600080fd5b604080516001600160a01b0385811660248301528481166044830152606480830185905283518084039091018152608490920183526020820180516001600160e01b03166323b872dd60e01b179052915160009283928392918916918391610b9991611285565b60006040518083038185875af1925050503d8060008114610bd6576040519150601f19603f3d011682016040523d82523d6000602084013e610bdb565b606091505b5091509150610bec82826001610cdd565b5080806020019051810190610c0191906112a1565b979650505050505050565b604080516001600160a01b038481166024830152604480830185905283518084039091018152606490920183526020820180516001600160e01b031663a9059cbb60e01b179052915160009283928392918816918391610c6b91611285565b60006040518083038185875af1925050503d8060008114610ca8576040519150601f19603f3d011682016040523d82523d6000602084013e610cad565b606091505b5091509150610cbe82826002610cdd565b5080806020019051810190610cd391906112a1565b9695505050505050565b60608315610cec575081610b17565b825115610cfc5782518084602001fd5b60405163100960cb60e01b81526004810183905260240161098c565b604051806040016040528060008152602001610d4560408051808201909152600060208201908152815290565b905290565b6040805160a08101825260009181018281526060820183905260808201929092529081908152602001610d4560405180606001604052806000815260200160008152602001600081525090565b828054610da390611117565b90600052602060002090601f016020900481019282610dc55760008555610e0b565b82601f10610dde57805160ff1916838001178555610e0b565b82800160010185558215610e0b579182015b82811115610e0b578251825591602001919060010190610df0565b50610e17929150610e51565b5090565b508054610e2790611117565b6000825580601f10610e37575050565b601f016020900490600052602060002090810190610b0391905b5b80821115610e175760008155600101610e52565b600060408284031215610e7857600080fd5b50919050565b600060408284031215610e9057600080fd5b610b178383610e66565b6001600160a01b0381168114610b0357600080fd5b600060208284031215610ec157600080fd5b8135610b1781610e9a565b634e487b7160e01b600052602160045260246000fd5b8151606082019060028110610f0757634e487b7160e01b600052602160045260246000fd5b808352506020830151151560208301526040830151604083015292915050565b600060208284031215610f3957600080fd5b5035919050565b600060608284031215610e7857600080fd5b60005b83811015610f6d578181015183820152602001610f55565b838111156104c15750506000910152565b8281526040602082015260008251806040840152610fa3816060850160208701610f52565b601f01601f1916919091016060019392505050565b6040805190810167ffffffffffffffff81118282101715610fe957634e487b7160e01b600052604160045260246000fd5b60405290565b6040516020810167ffffffffffffffff81118282101715610fe957634e487b7160e01b600052604160045260246000fd5b6000818303604081121561103357600080fd5b61103b610fb8565b833581526020601f198301121561105157600080fd5b611059610fef565b9150611063610fef565b602094850135815282529283015250919050565b8015158114610b0357600080fd5b60006040828403121561109757600080fd5b61109f610fb8565b8235815260208301356110b181611077565b60208201529392505050565b600081830360608112156110d057600080fd5b6110d8610fb8565b833581526040601f19830112156110ee57600080fd5b6110f6610fb8565b60208581013582526040909501358582015293810193909352509092915050565b600181811c9082168061112b57607f821691505b60208210811415610e7857634e487b7160e01b600052602260045260246000fd5b600060a0828403121561115e57600080fd5b60405160a0810181811067ffffffffffffffff8211171561118f57634e487b7160e01b600052604160045260246000fd5b604052825161119d81610e9a565b815260208301516111ad81610e9a565b806020830152506040830151604082015260608301516060820152608083015160808201528091505092915050565b600082198211156111fd57634e487b7160e01b600052601160045260246000fd5b500190565b60006080828403121561121457600080fd5b6040516080810181811067ffffffffffffffff8211171561124557634e487b7160e01b600052604160045260246000fd5b604052825161125381610e9a565b8152602083015161126381610e9a565b6020820152604083810151908201526060928301519281019290925250919050565b60008251611297818460208701610f52565b9190910192915050565b6000602082840312156112b357600080fd5b8151610b178161107756fea2646970667358221220397e30d01d3ffd06312157adb9c8b62d3be5bd7064c173ff5f807aed300ce7c564736f6c634300080c0033`,
-  BytecodeLen: 5709,
+  Bytecode: `0x608060405260405162001c1238038062001c12833981016040819052620000269162000252565b60008055436003556040805133815282516020808301919091528084015180516001600160a01b03168385015290810151606080840191909152818401516080840152015160a082015290517f112545cf4cc4ef4cc46259a35cf4621d5a4b14828a08081bb8649d32a39f1bd99181900360c00190a1620000aa341560076200014b565b6040805160808082018352600060208084018281528486018381526060808701858152338089528a86018051516001600160a01b0390811687528151880151865290518401518352600197889055439097558951808701919091529351909516838901529051908201529151828401528451808303909301835260a09091019093528051919262000142926002929091019062000175565b50505062000349565b81620001715760405163100960cb60e01b81526004810182905260240160405180910390fd5b5050565b82805462000183906200030c565b90600052602060002090601f016020900481019282620001a75760008555620001f2565b82601f10620001c257805160ff1916838001178555620001f2565b82800160010185558215620001f2579182015b82811115620001f2578251825591602001919060010190620001d5565b506200020092915062000204565b5090565b5b8082111562000200576000815560010162000205565b604051608081016001600160401b03811182821017156200024c57634e487b7160e01b600052604160045260246000fd5b60405290565b600081830360a08112156200026657600080fd5b604080519081016001600160401b03811182821017156200029757634e487b7160e01b600052604160045260246000fd5b604052835181526080601f1983011215620002b157600080fd5b620002bb6200021b565b60208501519092506001600160a01b0381168114620002d957600080fd5b80835250604084015160208301526060840151604083015260808401516060830152816020820152809250505092915050565b600181811c908216806200032157607f821691505b602082108114156200034357634e487b7160e01b600052602260045260246000fd5b50919050565b6118b980620003596000396000f3fe60806040526004361061009a5760003560e01c806383230757116100615780638323075714610132578063ab53f2c614610147578063ac3ab7031461016a578063ad2d91d11461017d578063ad9fa3d814610190578063bf2c5b24146101a357005b80631e93b0f1146100a35780632ad04dc3146100c75780632c10a159146100ea5780633bc5b7bf146100fd57806351c56a5f1461012a57005b366100a157005b005b3480156100af57600080fd5b506003545b6040519081526020015b60405180910390f35b6100da6100d5366004611370565b6101b6565b60405190151581526020016100be565b6100a16100f83660046113a1565b6101e6565b34801561010957600080fd5b5061011d6101183660046113d2565b61020a565b6040516100be9190611405565b61011d610236565b34801561013e57600080fd5b506001546100b4565b34801561015357600080fd5b5061015c61027d565b6040516100be929190611476565b6100a16101783660046113a1565b61031a565b6100a161018b3660046114b0565b61033a565b6100a161019e3660046113a1565b61035a565b6100a16101b13660046113a1565b61037a565b60006101c061116e565b6020810151518390526101d16111a0565b6101db828261039a565b602001519392505050565b6101ee6111a0565b61020661020036849003840184611538565b8261058e565b5050565b60408051606081018252600080825260208201819052918101919091526102308261073e565b92915050565b604080516060810182526000808252602082018190529181019190915261025b6111cd565b60208101516000905261026c6111a0565b6102768282610810565b5192915050565b60006060600054600280805461029290611570565b80601f01602080910402602001604051908101604052809291908181526020018280546102be90611570565b801561030b5780601f106102e05761010080835404028352916020019161030b565b820191906000526020600020905b8154815290600101906020018083116102ee57829003601f168201915b50505050509050915091509091565b6103226111a0565b610206610334368490038401846115a5565b8261039a565b6103426111a0565b610206610354368490038401846115fc565b826109fd565b6103626111a0565b61020661037436849003840184611656565b82610810565b6103826111a0565b61020661039436849003840184611538565b82610bf7565b6103aa6007600054146016610d49565b81516103c59015806103be57508251600154145b6017610d49565b6000808055600280546103d790611570565b80601f016020809104026020016040519081016040528092919081815260200182805461040390611570565b80156104505780601f1061042557610100808354040283529160200191610450565b820191906000526020600020905b81548152906001019060200180831161043357829003601f168201915b50505050508060200190518101906104689190611742565b9050610478600a43106018610d49565b60408051338152845160208083019190915285015151518183015290517f028f10069e3d138251f5b63d2e84687a8240062d4382aa3353ec2f32004dc5519181900360600190a16104cb34156015610d49565b604051600181527faf686feb6236f6c700c0fcb7f01c1132c50520489937505f2b0fc02c0b5871939060200160405180910390a1600160208381018290523360009081526004825260409020805460ff1916831781559085015151519101556105326111f7565b815181516001600160a01b03918216905260208084015183519216918101919091526040808401518351909101526060808401518351909101528082018051439052608084015190519091015261058881610d6f565b50505050565b61059e600160005414600b610d49565b81516105b99015806105b257508251600154145b600c610d49565b6000808055600280546105cb90611570565b80601f01602080910402602001604051908101604052809291908181526020018280546105f790611570565b80156106445780601f1061061957610100808354040283529160200191610644565b820191906000526020600020905b81548152906001019060200180831161062757829003601f168201915b505050505080602001905181019061065c919061175e565b60408051338152855160208083019190915286015115158183015290519192507f400d21ea4e4a5e28b4ae5f0f476c201fc8036473fcf7c8cd252f38698020b4f1919081900360600190a16106b334156008610d49565b6106cd6106c63383602001516001610e35565b6009610d49565b80516106e5906001600160a01b03163314600a610d49565b6106ed6111f7565b815181516001600160a01b0391821690526020808401518351921691810191909152604080840151835190910152606080840151835190910152808201805143905251600091015261058881610d6f565b604080516060810182526000808252602082018190529181019190915260016001600160a01b03831660009081526004602052604090205460ff16600181111561078a5761078a6113ef565b1415610801576001600160a01b038216600090815260046020526040908190208151606081019092528054829060ff1660018111156107cb576107cb6113ef565b60018111156107dc576107dc6113ef565b81528154610100900460ff161515602082015260019091015460409091015292915050565b60008082526020820152919050565b6108206006600054146013610d49565b815161083b90158061083457508251600154145b6014610d49565b60008080556002805461084d90611570565b80601f016020809104026020016040519081016040528092919081815260200182805461087990611570565b80156108c65780601f1061089b576101008083540402835291602001916108c6565b820191906000526020600020905b8154815290600101906020018083116108a957829003601f168201915b50505050508060200190518101906108de9190611742565b6040805133815285516020808301919091528601515115158183015290519192507f663356c9bc60432e38c96f881aa1e2828a9a5648f65169c66c8c7722e9c21365919081900360600190a161093634156012610d49565b7fbfdd6ccd97dad3fc6b1831c605f5cb14ee111152c469fc8e19c36ad38fc718e56109603361073e565b60405161096d9190611405565b60405180910390a161097e3361073e565b8252610988611244565b815181516001600160a01b0391821690526020808401518351921691015260408083015182519091015260608201516109c3906001906117e1565b6020808301805192909252835182516001600160a01b03909116910152805143604090910152608083015190516060015261058881610e4d565b610a0d6003600054146010610d49565b8151610a28901580610a2157508251600154145b6011610d49565b600080805560028054610a3a90611570565b80601f0160208091040260200160405190810160405280929190818152602001828054610a6690611570565b8015610ab35780601f10610a8857610100808354040283529160200191610ab3565b820191906000526020600020905b815481529060010190602001808311610a9657829003601f168201915b5050505050806020019051810190610acb9190611742565b604080513381528551602080830191909152808701518051838501520151606082015290519192507f85f73e284b1b1aeb266b14c389a29537c9fdd9a589649702abee8564ab4d1634919081900360800190a1610b2a3415600d610d49565b8051610b42906001600160a01b03163314600e610d49565b602080840151805190820151604051610b9093610b6a93929101918252602082015260400190565b6040516020818303038152906040528051906020012060001c826060015114600f610d49565b610b98611244565b815181516001600160a01b03918216905260208084015183519083169082015260408085015184518201528184018051600090528551815194169390920192909252805143920191909152608083015190516060015261058881610e4d565b610c07600760005414601b610d49565b8151610c22901580610c1b57508251600154145b601c610d49565b600080805560028054610c3490611570565b80601f0160208091040260200160405190810160405280929190818152602001828054610c6090611570565b8015610cad5780601f10610c8257610100808354040283529160200191610cad565b820191906000526020600020905b815481529060010190602001808311610c9057829003601f168201915b5050505050806020019051810190610cc59190611742565b9050610cd6600a431015601d610d49565b60408051338152845160208083019190915285015115158183015290517f3a35e33c7cbe4475e726117e3691b4a75ad6c9b28c29c59a1ef792dd449861bb9181900360600190a1610d2934156019610d49565b8051610d41906001600160a01b03163314601a610d49565b6105326111f7565b816102065760405163100960cb60e01b8152600481018290526024015b60405180910390fd5b610db36040518060a0016040528060006001600160a01b0316815260200160006001600160a01b031681526020016000815260200160008152602001600081525090565b8151516001600160a01b03908116825282516020908101519091168183015282516040908101518184015283516060908101519084015281840151820151608084015260076000554360015551610e0c91839101611807565b60405160208183030381529060405260029080519060200190610e309291906112a1565b505050565b6000610e4383853085610f74565b90505b9392505050565b8051604001516020820151511015610efc57610ea36040518060a0016040528060006001600160a01b0316815260200160006001600160a01b031681526020016000815260200160008152602001600081525090565b8151516001600160a01b03908116825282516020908101519091168183015282516040908101518184015281840180515160608086019190915290510151608084015260066000554360015551610e0c91839101611807565b610f18816000015160200151826020015160200151600161104e565b8051516020820151606001516040516001600160a01b039092169181156108fc0291906000818181858888f19350505050158015610f5a573d6000803e3d6000fd5b5060008080556001819055610f7190600290611325565b50565b604080516001600160a01b0385811660248301528481166044830152606480830185905283518084039091018152608490920183526020820180516001600160e01b03166323b872dd60e01b179052915160009283928392918916918391610fdb9161184a565b60006040518083038185875af1925050503d8060008114611018576040519150601f19603f3d011682016040523d82523d6000602084013e61101d565b606091505b509150915061102e82826001611062565b50808060200190518101906110439190611866565b979650505050505050565b61105983838361109d565b610e3057600080fd5b60608315611071575081610e46565b8251156110815782518084602001fd5b60405163100960cb60e01b815260048101839052602401610d66565b604080516001600160a01b038481166024830152604480830185905283518084039091018152606490920183526020820180516001600160e01b031663a9059cbb60e01b1790529151600092839283929188169183916110fc9161184a565b60006040518083038185875af1925050503d8060008114611139576040519150601f19603f3d011682016040523d82523d6000602084013e61113e565b606091505b509150915061114f82826002611062565b50808060200190518101906111649190611866565b9695505050505050565b60405180604001604052806000815260200161119b60408051808201909152600060208201908152815290565b905290565b6040805160a081018252600091810182815260608201839052608082018390528152602081019190915290565b60405180604001604052806000815260200161119b60405180602001604052806000151581525090565b6040805160c0810182526000918101828152606082018390526080820183905260a0820192909252908190815260200161119b604051806040016040528060008152602001600081525090565b6040805160a0810182526000918101828152606082018390526080820192909252908190815260200161119b60405180608001604052806000815260200160006001600160a01b0316815260200160008152602001600081525090565b8280546112ad90611570565b90600052602060002090601f0160209004810192826112cf5760008555611315565b82601f106112e857805160ff1916838001178555611315565b82800160010185558215611315579182015b828111156113155782518255916020019190600101906112fa565b5061132192915061135b565b5090565b50805461133190611570565b6000825580601f10611341575050565b601f016020900490600052602060002090810190610f7191905b5b80821115611321576000815560010161135c565b60006020828403121561138257600080fd5b5035919050565b60006040828403121561139b57600080fd5b50919050565b6000604082840312156113b357600080fd5b610e468383611389565b6001600160a01b0381168114610f7157600080fd5b6000602082840312156113e457600080fd5b8135610e46816113bd565b634e487b7160e01b600052602160045260246000fd5b815160608201906002811061142a57634e487b7160e01b600052602160045260246000fd5b808352506020830151151560208301526040830151604083015292915050565b60005b8381101561146557818101518382015260200161144d565b838111156105885750506000910152565b828152604060208201526000825180604084015261149b81606085016020870161144a565b601f01601f1916919091016060019392505050565b60006060828403121561139b57600080fd5b6040805190810167ffffffffffffffff811182821017156114f357634e487b7160e01b600052604160045260246000fd5b60405290565b6040516020810167ffffffffffffffff811182821017156114f357634e487b7160e01b600052604160045260246000fd5b8015158114610f7157600080fd5b60006040828403121561154a57600080fd5b6115526114c2565b8235815260208301356115648161152a565b60208201529392505050565b600181811c9082168061158457607f821691505b6020821081141561139b57634e487b7160e01b600052602260045260246000fd5b600081830360408112156115b857600080fd5b6115c06114c2565b833581526020601f19830112156115d657600080fd5b6115de6114f9565b91506115e86114f9565b602094850135815282529283015250919050565b6000818303606081121561160f57600080fd5b6116176114c2565b833581526040601f198301121561162d57600080fd5b6116356114c2565b60208581013582526040909501358582015293810193909352509092915050565b6000818303604081121561166957600080fd5b6116716114c2565b833581526020601f198301121561168757600080fd5b61168f6114f9565b9150602084013561169f8161152a565b825260208101919091529392505050565b600060a082840312156116c257600080fd5b60405160a0810181811067ffffffffffffffff821117156116f357634e487b7160e01b600052604160045260246000fd5b80604052508091508251611706816113bd565b81526020830151611716816113bd565b806020830152506040830151604082015260608301516060820152608083015160808201525092915050565b600060a0828403121561175457600080fd5b610e4683836116b0565b60006080828403121561177057600080fd5b6040516080810181811067ffffffffffffffff821117156117a157634e487b7160e01b600052604160045260246000fd5b60405282516117af816113bd565b815260208301516117bf816113bd565b6020820152604083810151908201526060928301519281019290925250919050565b6000821982111561180257634e487b7160e01b600052601160045260246000fd5b500190565b81516001600160a01b0390811682526020808401519091169082015260408083015190820152606080830151908201526080808301519082015260a08101610230565b6000825161185c81846020870161144a565b9190910192915050565b60006020828403121561187857600080fd5b8151610e468161152a56fea26469706673582212205672ee99c0700989576f676e520dc5cd158bb26d18de784cfd5ff0bfe8d1857264736f6c634300080c0033`,
+  BytecodeLen: 7186,
   Which: `oD`,
   version: 7,
   views: {
@@ -943,25 +1340,31 @@ const _ETH = {
   };
 export const _stateSourceMap = {
   1: {
-    at: './index.rsh:50:3:after expr stmt',
+    at: './index.rsh:53:3:after expr stmt',
     fs: [],
     msg: null,
     who: 'Module'
     },
-  2: {
-    at: './index.rsh:60:3:after expr stmt',
-    fs: [],
-    msg: null,
-    who: 'Module'
-    },
-  4: {
-    at: './index.rsh:94:3:after expr stmt',
+  3: {
+    at: './index.rsh:90:3:after expr stmt',
     fs: [],
     msg: null,
     who: 'Module'
     },
   5: {
-    at: './index.rsh:71:58:after expr stmt semicolon',
+    at: './index.rsh:139:3:after expr stmt',
+    fs: [],
+    msg: null,
+    who: 'Module'
+    },
+  6: {
+    at: './index.rsh:96:56:after expr stmt semicolon',
+    fs: [],
+    msg: null,
+    who: 'Module'
+    },
+  7: {
+    at: './index.rsh:65:36:after expr stmt semicolon',
     fs: [],
     msg: null,
     who: 'Module'
@@ -973,10 +1376,12 @@ export const _Connectors = {
   };
 export const _Participants = {
   "Alice": Alice,
-  "Bob_getRandomNumber": Bob_getRandomNumber
+  "Bob_getReward": Bob_getReward,
+  "Bob_join": Bob_join
   };
 export const _APIs = {
   Bob: {
-    getRandomNumber: Bob_getRandomNumber
+    getReward: Bob_getReward,
+    join: Bob_join
     }
   };

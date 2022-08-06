@@ -15,8 +15,6 @@ const commonInteract = {
 const AInteract = {
   ...commonInteract,
   ...hasRandom,
-    ...hasConsoleLogger,
-
   getUsers: Fun([], Null),
   startRaffleDraw: Fun([], Object({
     nftId: Token,
@@ -25,18 +23,23 @@ const AInteract = {
   })),
   displayHashValue: Fun([Digest], Null),
   displayWinningNumber: Fun([UInt], Null),
+  deadline: UInt,
 }
 
-const BInteract = {
-  ...commonInteract,
-  // ...hasRandom,
-  // showRaffleNumber: Fun([UInt], UInt),
-}
+// const BInteract = {
+//   ...commonInteract,
+//   // ...hasRandom,
+//   // showRaffleNumber: Fun([UInt], UInt),
+// }
 
 export const main = Reach.App(() => {
   setOptions({ untrustworthyMaps: true })
   const A = Participant('Alice', AInteract);
-  const B = API('Bob', BInteract);
+  const B = API('Bob', {
+    // getRandomNumber: Fun([UInt], UInt),
+    join: Fun([UInt], Bool),
+    getReward: Fun([], Data({"None": Null, "Some": UInt})),
+  });
   init();
   // The first one to publish deploys the contract
   A.only(() => {
@@ -52,6 +55,33 @@ export const main = Reach.App(() => {
   assert(balance(nftId) == amt, "balance of NFT is wrong");
   A.interact.getUsers();
 
+
+
+  // commit()
+  // commit()
+
+
+  const bobsMap = new Map(Address, UInt);
+  const [bobAdded] = parallelReduce([0])
+    .invariant(balance(nftId) == amt)
+    .while(true)
+    .api_(B.join, (num) => {
+      // check(num == UInt, "number of Bobs is wrong");
+      return [0, (k) => {
+        k(true)
+        bobsMap[this] = num
+        return [bobAdded + 1]
+      }
+
+      ]
+    })
+    .timeout(absoluteTime(10), () => {
+      Anybody.publish()
+      return [
+        bobAdded + 1
+      ]
+    })
+
   A.only(() => {
     const saltAlice = declassify(_saltAlice)
     const winningNumber = declassify(_winningNumber)
@@ -61,35 +91,50 @@ export const main = Reach.App(() => {
   A.publish(saltAlice, winningNumber);
   checkCommitment(commitAlice, saltAlice, winningNumber);
 
-  // commit()
-  // commit()
-
-
-  const bobsMap = new Map(Address, UInt);
 
   // Give each user a random number between 1 and numberOfTickets
-  const [bobRaffleNumber, numberOfDraws] = parallelReduce([0, 0])
+  const [winnerAddress, numberOfDraws] = parallelReduce([A, 0])
     .invariant(balance(nftId) == amt)
     .while(numberOfDraws < numberOfTickets)
-    .api_(B.getRandomNumber, (number) => {
+    .api_(B.getReward, () => {
       return [0, (notify) => {
+        const number = bobsMap[this]
+        const address = number == winningNumber ? this : A
         notify(number)
-        bobsMap[this] = number
-
-
-
-        // if (number == winningNumber) {
-        //   transfer(amt, nftId).to(this)
-        // }else{
-        //   transfer(amt, nftId).to(A)
-        // }
-        return [number, numberOfDraws + 1]
+        return [address, numberOfDraws + 1]
       }]
     })
 
-  transfer(amt, nftId).to(A)
+  if (winnerAddress) {
+    transfer(amt, nftId).to(winnerAddress)
+  } else {
+    transfer(amt, nftId).to(A)
+  }
   transfer(balance()).to(A)
 
+
+  // const bobsMap = new Map(Address, UInt);
+  // const [bobRaffleNumber, numberOfDraws] = parallelReduce([0, 0])
+  //     .invariant(balance(nftId) == amt)
+  //     .while(numberOfDraws < numberOfTickets)
+  //     .api_(B.getRandomNumber, (number) => {
+  //       return [0, (notify) => {
+  //         notify(number)
+  //         bobsMap[this] = number
+
+
+
+  //         // if (number == winningNumber) {
+  //         //   transfer(amt, nftId).to(this)
+  //         // }else{
+  //         //   transfer(amt, nftId).to(A)
+  //         // }
+  //         return [number, numberOfDraws + 1]
+  //       }]
+  //     })
+
+  //     transfer(amt, nftId).to(A)
+  //     transfer(balance()).to(A)
 
   commit()
   exit();
